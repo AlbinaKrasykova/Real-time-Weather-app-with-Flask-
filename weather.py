@@ -2,7 +2,7 @@ import requests
 from datetime import datetime 
 
 # API key
-id_stored = 'f44b7a6923c2a4aa28014d76f9af3669'
+id_stored = '**************'
 
 def get_weather(location):
     # Construct the complete API link with location and API key
