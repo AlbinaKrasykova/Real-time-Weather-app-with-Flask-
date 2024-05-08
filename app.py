@@ -1,22 +1,24 @@
 from flask import Flask, render_template, request
-from weather import get_weather
+from function import get_api
+
+
+
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    weather, temp_city, icon = None, None, None
+    name, img , rating = None, None, None
     if request.method == 'POST':
+        theme = request.form['theme']
         location = request.form['locationName']
-        weather, temp_city, icon  = get_weather(location)
-        print(weather)
-        print(temp_city)
-        print(icon)
+        
+        name, img, rating  = get_api(theme, location)
+        print(name)
+        print(img)
+        print(rating)
 
-    return render_template('index.html', weather=weather, temp_city=temp_city, icon=icon )
+    return render_template('index.html', name=name, rating=rating, img=img )
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
